@@ -259,10 +259,10 @@
       <form @submit.prevent="login">
         <div class="relative mb-5 lg:w-96">
           <input
-            type="email"
-            v-model="email"
-            id="email"
-            autocomplete="current-email"
+            type="text"
+            v-model="username"
+            id="username"
+            autocomplete="current-username"
             class="block ps-10 py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border border-[#654F02] rounded-lg appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required
@@ -282,7 +282,7 @@
             />
           </svg>
           <label
-            for="email"
+            for="username"
             class="absolute ms-10 text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto bg-white"
             >Username</label
           >
@@ -393,52 +393,14 @@
     </div>
   </div>
 </template>
-<script setup>
-import axios from "axios";
-const email = ref("");
-const password = ref("");
-const router = useRouter();
-const loading = ref(false);
-const showMessage = ref(false);
-const errorMessage = ref("");
-let loginInProgress = false;
-const successMessage = ref("");
 
-const login = async () => {
-  loading.value = true;
-  try {
-    const response = await axios.post(
-      "https://fingerprint-616446599119.asia-south1.run.app/api/auth/login",
-      {
-        email: email.value,
-        password: password.value,
-      }
-    );
-
-    console.log("Login data:", response.data);
-
-    setTimeout(() => {
-      loading.value = false;
-      router.push("/admin/dashboard");
-    }, 2000);
-  } catch (error) {
-    if (error.response && error.response.status === 401) {
-      console.log(error.response);
-      errorMessage.value = "Incorrect email or password.";
-    } else {
-      errorMessage.value = "An error occurred. Please try again.";
-    }
-    successMessage.value = ""; // Clear success message on failure
-  } finally {
-  }
-};
-
-definePageMeta({
-  layout: false,
-});
-</script>
 <style>
-.bg-gradient {
-  background: linear-gradient(180deg, #0575e6 0%, #02298a 84.79%, #021b79 100%);
-}
+  .bg-gradient {
+    background: linear-gradient(
+      180deg,
+      #0575e6 0%,
+      #02298a 84.79%,
+      #021b79 100%
+    );
+  }
 </style>

@@ -1,7 +1,16 @@
-<script setup></script>
+<script setup>
+const modal = ref(false);
+const showModal = () => {
+  modal.value = !modal.value;
+};
+// function cancelModal() {
+//   deleteModal.value = !deleteModal.value;
+// }
+</script>
 
 <template>
   <div class="h-screen flex flex-row">
+    <Modal :isOpen="modal" />
     <div class="flex flex-col justify-center items-center bg-gradient w-3/5">
       <div class="text-slate-100 -translate-x-16">
         <div class="text-4xl font-semibold">Adovelopers</div>
@@ -364,6 +373,7 @@
       </form>
       <div class="flex flex-row justify-center items-centera mt-3">
         <div class="">Already have an account?</div>
+        <button @click="showModal(True)">show modal</button>
         <nuxt-link to="/" class="text-blue-700 hover:text-blue-500"
           >Login</nuxt-link
         >

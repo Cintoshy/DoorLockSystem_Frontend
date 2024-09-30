@@ -2,5 +2,6 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@vueuse/motion/nuxt"],
+  css: ["~/assets/css/datatables.tailwind.css"],
 });
